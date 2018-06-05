@@ -1,29 +1,33 @@
-echo "### Kill all containers..."
+echo "\n### Kill all containers...\n"
 docker kill $(docker ps -qa)
 
-echo "### Remove all container..."
+echo "\n### Remove all container...\n"
 docker rm $(docker ps -qa)
 
-echo "### Build apache_static"
+echo "\n### Build apache_static\n"
 docker build -t apache_static ./apache-php-image/
 
-echo "### Build express_dynamic"
+echo "\n### Build express_dynamic\n"
 docker build -t express_dynamic ./express-image/
 
-echo "### Build apache_rp"
+echo "\n### Build apache_rp\n"
 docker build -t express_dynamic ./apache-reverse-proxy/
 
-echo "### Run apache_static container"
+echo "\n### Run apache_static container\n"
 docker run -d --name apache_static res/apache_php
 
-echo "### Run express_dynamic"
+echo "\n### Run express_dynamic\n"
 docker run -d --name express_dynamic res/express
 
-echo "### Run apache_rp"
-docker run -d -p 8080:80 -e STATIC_APP=172.17.0.2:80 -e DYNAMIC_APP=172.17.0.3:3000 --name apache_rp res/apache_rp
+echo "\n### Run apache_rp"
+static_app=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static`
+dynamic_app=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic`
 
-echo "### check ip apache_static container (should be 172.17.0.2)"
+echo "## IP of injected: static $static_app and dynamic $dynamic_app\n" 
+docker run -d -p 8080:80 -e STATIC_APP=$static_app:80 -e DYNAMIC_APP=$dynamic_app:3000 --name apache_rp res/apache_rp
+
+echo "\n### check ip apache_static container\n"
 docker inspect apache_static | grep -i ipaddress
 
-echo "### check ip express_dynamic conatiner (should be 172.17.0.3)"
+echo "\n### check ip express_dynamic conatiner\n"
 docker inspect express_dynamic | grep -i ipaddress
