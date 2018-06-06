@@ -1,16 +1,16 @@
 $(function() {
   console.log("loading students");
-  function loadStudents() {
-    $.getJSON( "/api/students/", function (students ) {
-      console.log(students);
-      var message= "Nobody is here";
-      if( students.length > 0){
-        message = students[0].firstName + " " + students[0].lastName;
+  function loadAnimals() {
+    $.getJSON( "/api/students/", function (animals ) {
+      console.log(animals);
+      var message= "No animals is here";
+      if( animals.length > 0){
+        message = animals[0].firstName + " " + animals[0].lastName;
       }
-      $(".skills").text(message);
+      $(".animals").text(message);
     });
   };
-  loadStudents();
-  setInterval(loadStudents, 2000);
+  loadAnimals();
+  setInterval(loadAnimals, 2000);
 });
 
