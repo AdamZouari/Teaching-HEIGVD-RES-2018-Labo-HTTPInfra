@@ -351,3 +351,17 @@ We changed the ProxyPass to go to the cluster.
 
 ## Load balancing: round-robin vs sticky sessions
 
+Not yet done
+
+## Mangement UI
+
+For this part, we used Portainer, a very usefull UI for docker conatiners management.
+
+To use it, it's very simple. I wrote a small script to run it:
+
+```bash
+#Source : https://portainer.io/install.html
+docker volume create portainer_data
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+```
+
