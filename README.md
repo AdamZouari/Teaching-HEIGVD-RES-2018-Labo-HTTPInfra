@@ -367,6 +367,8 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
 
 To access to this management UI, you need to connect to \<ipAdressContainer\>:9000. 
 
+This is a shown to test this step.
+
 ![management ui](img/management_ui.png)
 
 ## Setup
