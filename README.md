@@ -365,3 +365,6 @@ docker volume create portainer_data
 docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 ```
 
+To access to this management UI, you need to connect to \<ipAdressContainer\>:9000. 
+
+![management ui](img/management_ui.png)
