@@ -78,7 +78,7 @@ CMD ["node","index.js"] # run the server
 
 ## Step 3: Reverse proxy with apache (static configuration)
 
-The static configuration is bad because docker give dynamicaly ip addresse. So every time we lunch the dockers containers, we need to configure the proxy.
+The static configuration is bad because docker give dynamically  ip address. So, every time we lunch the dockers containers, we need to configure the proxy.
 
 To configure the reverse proxy, we need to write a config file called 001-reverse-proxy.conf:
 
@@ -138,7 +138,7 @@ $(function() {
 });
 ```
 
-This script need to found a balise with the class "animals".
+This script need to find a tag with the class "animals".
 
 To add the script to our page we add this line at the end of our index.html:
 
@@ -148,7 +148,7 @@ To add the script to our page we add this line at the end of our index.html:
 
 ## Step 5: Dynamic reverse proxy configuration 
 
-To configure dynamicaly the ip addresss of our servers, we used the usefull -e from docker to add environnement variable.
+To configure dynamically  the ip address of our servers, we used the useful -e from docker to add environment variable.
 
 We generate a .config 001-reverse-proxy with a php script:
 
@@ -231,7 +231,7 @@ RUN a2ensite 000-* 001-*
 
 ## Load balancing: multiple server nodes
 
-To do this part, we used this tutoriel: https://httpd.apache.org/docs/2.4/fr/mod/mod_proxy_balancer.html
+To do this part, we used this tutorial: https://httpd.apache.org/docs/2.4/fr/mod/mod_proxy_balancer.html
 
 We had to add some new mods:
 
@@ -251,10 +251,10 @@ RUN a2ensite 000-* 001-*
 ```
 
 - **proxy_balancer**: mod to use the load balancer
-- **lbmethod_byrequests**: algorithm used to balanced the charge. (required)
-- **status**: will be usefull later for the admin interface
+- **lbmethod_byrequests**: algorithm used to balanc the charge. (required)
+- **status**: will be useful later for the admin interface
 
-We dupplicate both server (dynamic and static). so we had to add 2 environement variable.
+We duplicate both server (dynamic and static). so we had to add 2 environment variable.
 
 We modified our script:
 
@@ -346,16 +346,16 @@ We changed the ProxyPass to go to the cluster.
 - Run the two containers per cluster
 - Test if it works
 - Kill one of them
-- Look if it still work
+- Look if it still works
 - Kill both and look that stop responding
 
 ## Load balancing: round-robin vs sticky sessions
 
 Not yet done
 
-## Mangement UI
+## Management UI
 
-For this part, we used Portainer, a very usefull UI for docker conatiners management.
+For this part, we used Portainer, a very useful UI for docker containers management.
 
 To use it, it's very simple. I wrote a small script to run it:
 
